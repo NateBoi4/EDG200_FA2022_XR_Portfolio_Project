@@ -31,10 +31,11 @@ public class HammerThrow : MonoBehaviour
         switch (state)
         {
             case HammerState.IDLE_STATE:
+                rb.velocity = Vector3.zero;
                 break;
             case HammerState.RETURN_STATE:
                 //Debug.Log("returning");
-                if (Vector3.SqrMagnitude(playerHand.position - transform.position) > 16)
+                if (Vector3.SqrMagnitude(playerHand.position - transform.position) > 0.1)
                 {
                     Vector3 dir = (playerHand.position - transform.position).normalized;
                     rb.velocity = dir * throwMultiplier;

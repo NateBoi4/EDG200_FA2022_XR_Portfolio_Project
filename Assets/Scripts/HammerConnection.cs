@@ -6,11 +6,13 @@ using UnityEngine.InputSystem;
 public class HammerConnection : MonoBehaviour
 {
     public InputActionReference rightPrimaryButton;
+    public InputActionReference leftPrimaryButton;
     public HammerThrow hammer;
     // Start is called before the first frame update
     void Start()
     {
-        rightPrimaryButton.action.performed += PrimaryButtonPressed;
+        rightPrimaryButton.action.performed += HammerReturn;
+        leftPrimaryButton.action.performed += FlyToHammer;
     }
 
     // Update is called once per frame
@@ -19,8 +21,14 @@ public class HammerConnection : MonoBehaviour
         
     }
 
-    void PrimaryButtonPressed(InputAction.CallbackContext context)
+    void HammerReturn(InputAction.CallbackContext context)
     {
         hammer.ReturnHammer();
+    }
+
+    void FlyToHammer(InputAction.CallbackContext context)
+    {
+        hammer.IdleHammer();
+        gameObject.transform.position = hammer.transform.position - Vector3.up;
     }
 }
