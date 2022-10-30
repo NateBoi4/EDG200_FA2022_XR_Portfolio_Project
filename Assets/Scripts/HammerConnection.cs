@@ -29,6 +29,7 @@ public class HammerConnection : MonoBehaviour
     void FlyToHammer(InputAction.CallbackContext context)
     {
         hammer.IdleHammer();
-        gameObject.transform.position = hammer.transform.position - Vector3.up;
+        gameObject.transform.position = hammer.transform.position - hammer.transform.forward * 2.0f;
+        hammer.ReturnHammer();
     }
 }

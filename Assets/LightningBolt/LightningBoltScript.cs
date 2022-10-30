@@ -7,6 +7,7 @@
 
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.XR.OpenXR.Input;
 
 namespace DigitalRuby.LightningBolt
 {
@@ -336,6 +337,7 @@ namespace DigitalRuby.LightningBolt
             startIndex = 0;
             GenerateLightningBolt(start, end, Generations, Generations, 0.0f);
             UpdateLineRenderer();
+            ApplyForce();
         }
 
         /// <summary>
@@ -351,6 +353,27 @@ namespace DigitalRuby.LightningBolt
                 for (int x = 0; x < Columns; x++)
                 {
                     offsets[x + (y * Columns)] = new Vector2((float)x / Columns, (float)y / Rows);
+                }
+            }
+        }
+
+        public void ToggleManualMode()
+        {
+            ManualMode = !ManualMode;
+        }
+
+        public void ApplyForce()
+        {
+            Debug.Log("Running");
+            RaycastHit hit;
+            if (Physics.Raycast(StartObject.transform.position, StartObject.transform.forward, out hit, 1000.0f))
+            {
+                Debug.Log("Hit");
+                Rigidbody rb = hit.collider.attachedRigidbody;
+                if (rb)
+                {
+                    Debug.Log("BOOM!");
+                    rb.AddExplosionForce(100.0f, hit.point, 50.0f, 0.0f, ForceMode.Impulse);
                 }
             }
         }

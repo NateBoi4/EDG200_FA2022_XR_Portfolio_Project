@@ -209,7 +209,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8303979906789499772}
-  - component: {fileID: 8303979906789499768}
   - component: {fileID: 8303979906789499769}
   - component: {fileID: 8303979906789499774}
   - component: {fileID: 8303979906789499775}
@@ -237,24 +236,6 @@ Transform:
   m_Father: {fileID: 8303979907001999773}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &8303979906789499768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8303979906789499773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Device: 1
-  m_PoseSource: 5
-  m_PoseProviderComponent: {fileID: 0}
-  m_TrackingType: 0
-  m_UpdateType: 0
-  m_UseRelativeTransform: 0
 --- !u!114 &8303979906789499769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,7 +538,7 @@ GameObject:
   - component: {fileID: 8303979907001999760}
   - component: {fileID: 8303979907001999761}
   - component: {fileID: 8303979907001999772}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: XRRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -648,6 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightPrimaryButton: {fileID: 5325381198822959459, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  leftPrimaryButton: {fileID: -2905625247356094172, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   hammer: {fileID: 0}
 --- !u!1 &8303979907330084343
 GameObject:
@@ -1270,7 +1252,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8303979907907532063}
-  - component: {fileID: 8303979907907532059}
   - component: {fileID: 8303979907907532056}
   - component: {fileID: 8303979907907532057}
   - component: {fileID: 8303979907907532062}
@@ -1298,24 +1279,6 @@ Transform:
   m_Father: {fileID: 8303979907001999773}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &8303979907907532059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8303979907907532060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Device: 1
-  m_PoseSource: 4
-  m_PoseProviderComponent: {fileID: 0}
-  m_TrackingType: 0
-  m_UpdateType: 0
-  m_UseRelativeTransform: 0
 --- !u!114 &8303979907907532056
 MonoBehaviour:
   m_ObjectHideFlags: 0
