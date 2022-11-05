@@ -8,6 +8,7 @@ public class TriggerOnHit : MonoBehaviour
     [Header("Custom Event")]
     public UnityEvent myEvents;
 
+
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
