@@ -362,6 +362,11 @@ namespace DigitalRuby.LightningBolt
             ManualMode = !ManualMode;
         }
 
+        public void ManualModeON()
+        {
+            ManualMode = true;
+        }
+
         public void ApplyForce()
         {
             Debug.Log("Running");
@@ -374,6 +379,12 @@ namespace DigitalRuby.LightningBolt
                 {
                     Debug.Log("BOOM!");
                     rb.AddExplosionForce(100.0f, hit.point, 50.0f, 0.0f, ForceMode.Impulse);
+                }
+                TriggerOnHit trigger = hit.collider.gameObject.GetComponent<TriggerOnHit>();
+                if (trigger)
+                {
+                    Debug.Log("BLAST!");
+                    trigger.myEvents.Invoke();
                 }
             }
         }
