@@ -15,8 +15,6 @@ public class HammerThrow : MonoBehaviour
     HammerState state;
     Rigidbody rb;
 
-    public bool held;
-
     public Transform playerHand;
 
     public float throwMultiplier = 20.0f;
@@ -25,7 +23,6 @@ public class HammerThrow : MonoBehaviour
     {
         state = HammerState.IDLE_STATE;
         rb = GetComponent<Rigidbody>();
-        held = false;
     }
 
     // Update is called once per frame
@@ -35,7 +32,6 @@ public class HammerThrow : MonoBehaviour
         {
             case HammerState.IDLE_STATE:
                 rb.velocity = Vector3.zero;
-                held = true;
                 break;
             case HammerState.RETURN_STATE:
                 //Debug.Log("returning");
@@ -48,11 +44,9 @@ public class HammerThrow : MonoBehaviour
                 {
                     state = HammerState.IDLE_STATE;
                 }
-                held = false;
                 break;
             case HammerState.THROW_STATE:
                 rb.velocity = rb.velocity.normalized * throwMultiplier;
-                held = false;
                 break;
             default:
                 break;
