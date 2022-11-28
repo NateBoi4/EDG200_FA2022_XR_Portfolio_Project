@@ -136,7 +136,7 @@ namespace SemihOrhan.WaveOne.Spawners
             int toDeploy = 0;
             int deployedCount = 0;
             int currentEnemy = 0;
-            int presetIndexEndPoint;
+            int presetIndexEndPoint = 0;
             int currentGroup = 0;
             int amountFullGroups = 0;
             GameObject instance;
@@ -181,7 +181,8 @@ namespace SemihOrhan.WaveOne.Spawners
                     bool gotRelativeGroupPositions = false;
                     List<Vector3> relativeGroupPositions = new List<Vector3>();
                     Vector3 spawnPointPos = waveConfig.StartPointScript.GetPoint();
-                    presetIndexEndPoint = Random.Range(0, endPoints.GetEndPoints(enemyWaves[currentWave].enemies[currentEnemy].gameObject).Count);
+                    if(SetEndPoints)
+                        presetIndexEndPoint = Random.Range(0, endPoints.GetEndPoints(enemyWaves[currentWave].enemies[currentEnemy].gameObject).Count);
                     int spawnAmount = enemyWaves[currentWave].enemies[currentEnemy].groupSize;
 
                     if (currentGroup == amountFullGroups)

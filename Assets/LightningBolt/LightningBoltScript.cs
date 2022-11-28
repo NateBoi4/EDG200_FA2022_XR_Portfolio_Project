@@ -369,21 +369,21 @@ namespace DigitalRuby.LightningBolt
 
         public void ApplyForce()
         {
-            Debug.Log("Running");
+            //Debug.Log("Running");
             RaycastHit hit;
-            if (Physics.Raycast(StartObject.transform.position, StartObject.transform.forward, out hit, 1000.0f))
+            if (Physics.Raycast(StartObject.transform.position, StartObject.transform.forward, out hit, 1000.0f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
             {
-                Debug.Log("Hit");
+                //Debug.Log("Hit");
                 Rigidbody rb = hit.collider.attachedRigidbody;
                 if (rb)
                 {
-                    Debug.Log("BOOM!");
+                    //Debug.Log("BOOM!");
                     rb.AddExplosionForce(100.0f, hit.point, 50.0f, 0.0f, ForceMode.Impulse);
                 }
                 TriggerOnHit trigger = hit.collider.gameObject.GetComponent<TriggerOnHit>();
                 if (trigger)
                 {
-                    Debug.Log("BLAST!");
+                    //Debug.Log("BLAST!");
                     trigger.myEvents.Invoke();
                 }
             }
