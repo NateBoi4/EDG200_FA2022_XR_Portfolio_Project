@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -484,9 +484,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ce9d0000
-      m_LastClickedID: 40398
-      m_ExpandedIDs: 1afbffff466f0000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 1afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -786,11 +786,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.22496875, y: -0.36769503, z: 0.0921183, w: 0.897725}
     speed: 2
-    m_Value: {x: 0.22508344, y: -0.3663102, z: 0.09177127, w: 0.8981828}
+    m_Value: {x: -0.22496876, y: 0.36769503, z: -0.0921183, w: -0.897725}
   m_Size:
     m_Target: 6.139564
     speed: 2
-    m_Value: 5.8751807
+    m_Value: 6.139564
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -884,22 +884,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/DestructionMeshes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 91
   m_LastFolders:
-  - Assets
+  - Assets/DestructionMeshes
   m_LastFoldersGridSize: 91
   m_LastProjectPath: C:\Users\henry.foley\Documents\XR_Class\EDG200_FA2022_XR_Portfolio_Project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: b8ac0000
-    m_LastClickedID: 44216
-    m_ExpandedIDs: 00000000b8ac0000baac0000bcac0000beac0000c0ac0000c2ac0000c4ac000000ca9a3bffffff7f
+    m_SelectedIDs: b2be0000
+    m_LastClickedID: 48818
+    m_ExpandedIDs: 00000000a6be0000a8be0000aabe0000acbe0000aebe0000b0be0000b2be000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -927,7 +927,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b8ac0000baac0000bcac0000beac0000c0ac0000c2ac0000c4ac0000
+    m_ExpandedIDs: 00000000a6be0000a8be0000aabe0000acbe0000aebe0000b0be0000b2be0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -954,7 +954,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000ea9c0000e49c00001e7600009a680000943f1d00f04e0300
     m_RenameOverlay:
       m_UserAcceptedRename: 0
