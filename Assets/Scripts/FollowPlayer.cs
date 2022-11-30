@@ -2,7 +2,7 @@ using DigitalRuby.LightningBolt;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.AI;
+//using UnityEditor.AI;
 using UnityEngine;
 using UnityEngine.AI;
 
