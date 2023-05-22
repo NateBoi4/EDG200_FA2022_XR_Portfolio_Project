@@ -34,7 +34,6 @@ public class HammerThrow : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 break;
             case HammerState.RETURN_STATE:
-                //Debug.Log("returning");
                 if (Vector3.SqrMagnitude(playerHand.position - transform.position) > 0.1)
                 {
                     Vector3 dir = (playerHand.position - transform.position).normalized;
@@ -66,5 +65,11 @@ public class HammerThrow : MonoBehaviour
     public void IdleHammer()
     {
         state = HammerState.IDLE_STATE;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground" && state == HammerState.IDLE_STATE)
+            Debug.Log("BOOM");
     }
 }

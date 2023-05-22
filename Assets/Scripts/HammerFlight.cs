@@ -27,10 +27,6 @@ public class HammerFlight : MonoBehaviour
                     transform.position += Hammer.transform.up * Time.deltaTime * movementSpeed;
             }
         }
-        //else if (Input.GetKey(KeyCode.S))
-        //{
-        //    transform.position -= Hammer.transform.up * Time.deltaTime * movementSpeed;
-        //}
     }
 
     public void Hold()

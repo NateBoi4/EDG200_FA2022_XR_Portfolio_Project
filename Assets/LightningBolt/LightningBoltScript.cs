@@ -82,6 +82,25 @@ namespace DigitalRuby.LightningBolt
         [Tooltip("The animation mode for the lightning")]
         public LightningBoltAnimationMode AnimationMode = LightningBoltAnimationMode.PingPong;
 
+        [Tooltip("The amount of charge the player has stored up.")]
+        [Range(-1.0f, 200.0f)]
+        public float Charge = 200.0f;
+
+        [Tooltip("The Player Character")]
+        public GameObject player;
+
+        [Tooltip("Hammer Head Position")]
+        public Transform hammerHead;
+
+        [Tooltip("Is Hammer Charging?")]
+        public bool charging;
+
+        [Tooltip("Is Hammer Blasting?")]
+        public bool blasting;
+
+        [Tooltip("Is Main Lightning bolt")]
+        public bool main;
+
         /// <summary>
         /// Assign your own random if you want to have the same lightning appearance
         /// </summary>
@@ -291,6 +310,10 @@ namespace DigitalRuby.LightningBolt
             lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.positionCount = 0;
             UpdateFromMaterialChange();
+            Charge = 200.0f;
+            player = GameObject.FindGameObjectWithTag("Player");
+            charging = false;
+            blasting = false;
         }
 
         private void Update()
@@ -308,7 +331,16 @@ namespace DigitalRuby.LightningBolt
                     Trigger();
                 }
             }
+            if (main)
+            {
+                if (charging && !blasting)
+                {
+                    player.GetComponent<HammerCharge>().RestoreCharge(Time.deltaTime * 20.0f);
+                }
+            }
             timer -= Time.deltaTime;
+            Charge = player.GetComponent<HammerCharge>().GetCharge();
+            
         }
 
         /// <summary>
@@ -316,28 +348,36 @@ namespace DigitalRuby.LightningBolt
         /// </summary>
         public void Trigger()
         {
-            Vector3 start, end;
-            timer = Duration + Mathf.Min(0.0f, timer);
-            if (StartObject == null)
+            if (Charge > 0.0f)
             {
-                start = StartPosition;
+                Vector3 start, end;
+                timer = Duration + Mathf.Min(0.0f, timer);
+                if (StartObject == null)
+                {
+                    start = StartPosition;
+                }
+                else
+                {
+                    start = StartObject.transform.position + StartPosition;
+                }
+                if (EndObject == null)
+                {
+                    end = EndPosition;
+                }
+                else
+                {
+                    end = EndObject.transform.position + EndPosition;
+                }
+                startIndex = 0;
+                GenerateLightningBolt(start, end, Generations, Generations, 0.0f);
+                UpdateLineRenderer();
+                ApplyForce();
             }
-            else
+            if (main)
             {
-                start = StartObject.transform.position + StartPosition;
+                if ((hammerHead.position.y < player.GetComponent<HammerCharge>().headPos.position.y && !charging) || blasting)
+                    player.GetComponent<HammerCharge>().UseCharge(Time.deltaTime * 10.0f);
             }
-            if (EndObject == null)
-            {
-                end = EndPosition;
-            }
-            else
-            {
-                end = EndObject.transform.position + EndPosition;
-            }
-            startIndex = 0;
-            GenerateLightningBolt(start, end, Generations, Generations, 0.0f);
-            UpdateLineRenderer();
-            ApplyForce();
         }
 
         /// <summary>
@@ -359,7 +399,15 @@ namespace DigitalRuby.LightningBolt
 
         public void ToggleManualMode()
         {
-            ManualMode = !ManualMode;
+            if (!charging)
+                ManualMode = !ManualMode;
+        }
+
+        public void ToggleManualModeAlt()
+        {
+            if (hammerHead.position.y > player.GetComponent<HammerCharge>().headPos.position.y)
+                ManualMode = !ManualMode;
+            
         }
 
         public void ManualModeON()
@@ -367,23 +415,59 @@ namespace DigitalRuby.LightningBolt
             ManualMode = true;
         }
 
+        public void ChargeHammer()
+        {
+            if (hammerHead.position.y > player.GetComponent<HammerCharge>().headPos.position.y)
+            {
+                player.GetComponent<HammerCharge>().RestoreCharge(Time.deltaTime * 20.0f);
+                charging = true;
+            }
+        }
+
+        public void StopCharging()
+        {
+            charging = false;
+        }
+
+        public void UsingHammer()
+        {
+            if (hammerHead.position.y > player.GetComponent<HammerCharge>().headPos.position.y)
+            {
+                charging = true;
+            }
+            else
+            {
+                blasting = true;
+                ManualMode = !ManualMode;
+            }
+        }
+
+        public void StopUsingHammer()
+        {
+            if (charging)
+            {
+                charging = false;
+            }
+            else
+            {
+                blasting = false;
+                ManualMode = !ManualMode;
+            }
+        }
+
         public void ApplyForce()
         {
-            //Debug.Log("Running");
             RaycastHit hit;
             if (Physics.Raycast(StartObject.transform.position, StartObject.transform.forward, out hit, 1000.0f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
             {
-                //Debug.Log("Hit");
                 Rigidbody rb = hit.collider.attachedRigidbody;
                 if (rb)
                 {
-                    //Debug.Log("BOOM!");
                     rb.AddExplosionForce(100.0f, hit.point, 50.0f, 0.0f, ForceMode.Impulse);
                 }
                 TriggerOnHit trigger = hit.collider.gameObject.GetComponent<TriggerOnHit>();
                 if (trigger)
                 {
-                    //Debug.Log("BLAST!");
                     trigger.myEvents.Invoke();
                 }
             }
