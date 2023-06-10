@@ -249,7 +249,6 @@ public class OVRSkeleton : MonoBehaviour
                 return dataProvider;
             }
         }
-
         return null;
     }
 

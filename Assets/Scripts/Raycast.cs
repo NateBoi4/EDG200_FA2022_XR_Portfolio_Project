@@ -7,9 +7,9 @@ public class Raycast : MonoBehaviour
     [SerializeField] private GameObject startPoint;
     [SerializeField] private GameObject endPoint;
 
-    [SerializeField] private float distance = 10;
+    [SerializeField] private float distance;
 
-    private void FixedUpdate()
+    private void Update()
     {
         RaycastHit hit;
 
@@ -18,6 +18,10 @@ public class Raycast : MonoBehaviour
         if (Physics.Raycast(startPoint.transform.position, fwd, out hit, distance))
         {
             endPoint.transform.position = hit.point;
+        }
+        else
+        {
+            //endPoint.transform.position = startPoint.transform.position + new Vector3(0.0f, 0.0f, 20.0f);
         }
     }
 }
